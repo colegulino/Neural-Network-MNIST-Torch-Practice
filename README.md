@@ -1,4 +1,4 @@
-My first attempt at using Lua/Torch for Deep Learning applications. Using a single layer neural network to recognize handwritten characters from the MNIST dataset. — Edit
+My first attempt at using Lua/Torch for Deep Learning applications. Using a single layer neural network to recognize handwritten characters from the MNIST dataset.
 
 I took a lot of inspiration and a bit of code from: http://rnduja.github.io/2015/10/13/torch-mnist/
 
