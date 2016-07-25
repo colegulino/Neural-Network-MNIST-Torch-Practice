@@ -149,6 +149,8 @@ no_epochs = 300
 current_epoch = 0
 change_threshold = 0.001
 batch_size = 200
+less_accuracy_no_times = 0
+
 while true do
 	local last_accuracy = last_accuracy or 0
 	current_epoch = current_epoch + 1
@@ -157,12 +159,19 @@ while true do
 	local accuracy = validate(validation_set, batch_size)
 	print(string.format('Epoch: %d | Current Loss: %4f | Accuracy: %4f', current_epoch, current_loss, accuracy))
 
-	if(math.abs(accuracy - last_accuracy) < change_threshold or current_epoch == no_epochs) then
+	if(last_accuracy > accuracy) then
+		less_accuracy_no_times = less_accuracy_no_times + 1
+	end
+
+	if(math.abs(accuracy - last_accuracy) < change_threshold or current_epoch == no_epochs or less_accuracy_no_times > 1) then
 		break
 	end
 end
 
+print("Done training")
 
+test_accuracy = validate(test_set, batch_size)
+print(string.format('Final Test Accuracy: %4f', test_accuracy))
 
 
 
